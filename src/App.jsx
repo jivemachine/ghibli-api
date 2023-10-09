@@ -4,11 +4,12 @@ const App = () => {
 
     // getting all films from api
     const [films, setFilms] = useState([]);
-    const getData = () => {
+    const getFilms = () => {
         fetch('http://api-ghibli.herokuapp.com/films')
             .then(response => response.json())
             .then(allFilms => setFilms(allFilms))
     };
+    // getting all characters in films from API
 
     return (
         <>
@@ -25,12 +26,13 @@ const App = () => {
                     </div>
                 ))}
             </div> */}
-            <main className="container">
+            <button className="btn btn-primary m-2" onClick={getFilms}>Load Filmz</button>
+            <button className="btn btn-secondary m-2" >Load People</button>
+            <div className="container">
                 <section className="row justify-content-center mt-5">
-                    <button className="btn btn-primary" onClick={getData}>Load Filmz</button>
                     {films.map(film => (
                         <div className="col-md-6" key={film.id}>
-                            <div className="card shadow my2" style={{width: "18rem"}}>
+                            <div className="card shadow my2" style={{ width: "18rem" }}>
                                 <img src={film.image} className="card-img-top" />
                                 <div className="card-body">
                                     <h5 className="card-title">{film.title}</h5>
@@ -40,7 +42,7 @@ const App = () => {
                         </div>
                     ))}
                 </section>
-            </main>
+            </div>
         </>
     );
 }
