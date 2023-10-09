@@ -59,7 +59,7 @@ const App = () => {
                                     <h5 className="card-title">{char.name}</h5>
                                     <p className="card-text">Age: {char.age}</p>
                                     <p className="card-text">Gender: {char.gender}</p>
-                                    <p className="card-text">films: <a target="_blank" href={char.films}>link</a></p>
+                                    <p className="card-text">JSON Response: <a target="_blank" href={"http://api-ghibli.herokuapp.com/people/" + char.id}>link</a></p>
                                 </div>
                             </div>
                         </div>
