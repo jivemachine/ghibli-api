@@ -10,6 +10,12 @@ const App = () => {
             .then(allFilms => setFilms(allFilms))
     };
     // getting all characters in films from API
+    const [chars, setChars] = useState([]);
+    const getChars = () => {
+        fetch('http://api-ghibli.herokuapp.com/people')
+        .then(response => response.json())
+        .then(allChars => setChars(allChars))
+    };
 
     return (
         <>
@@ -27,7 +33,7 @@ const App = () => {
                 ))}
             </div> */}
             <button className="btn btn-primary m-2" onClick={getFilms}>Load Filmz</button>
-            <button className="btn btn-secondary m-2" >Load People</button>
+            <button className="btn btn-secondary m-2" onClick={getChars}>Load People</button>
             <div className="container">
                 <section className="row justify-content-center mt-5">
                     {films.map(film => (
@@ -37,6 +43,23 @@ const App = () => {
                                 <div className="card-body">
                                     <h5 className="card-title">{film.title}</h5>
                                     <p className="card-text">{film.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </section>
+            </div>
+            <div className="container">
+                <section className="row justify-content-center mt-5">
+                    {chars.map(char => (
+                        <div className="col-md-6" key={char.id}>
+                            <div className="card shadow my2" style={{ width: "18rem" }}>
+                                {/* <img src={film.image} className="card-img-top" /> */}
+                                <div className="card-body">
+                                    <h5 className="card-title">{char.name}</h5>
+                                    <p className="card-text">Age: {char.age}</p>
+                                    <p className="card-text">Gender: {char.gender}</p>
+                                    <p className="card-text">films: <a target="_blank" href={char.films}>link</a></p>
                                 </div>
                             </div>
                         </div>
